@@ -1,0 +1,11 @@
+
+{
+  "class": [
+    "0", "300", "600",
+    "I", "Gauge", "V"
+  ],
+  "standard": [
+    { "type": "전압", "model": "a", "conditions": { "unit": "V", "max_val": "600" } },
+    { "type": "전류", "model": "a", "conditions": { "unit": "I", "max_val": "300" } }
+  ]
+}

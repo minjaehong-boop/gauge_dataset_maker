@@ -1,0 +1,7 @@
+# Train/val sets
+train: ../datasets/aa__/fix/train/images  # train images (relative to 'path')
+val: ../datasets/aa__/fix/val/images # val images (relative to 'path')
+#test: _shuffle/val/images
+# Classes
+nc: 6  # number of classes
+names: ['0', '300', '600', 'I', 'Gauge', 'V']  # class names
