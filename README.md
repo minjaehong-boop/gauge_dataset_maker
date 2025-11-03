@@ -11,17 +11,37 @@ A workflow to generate composite YOLO datasets from individual gauge images.
 ### 1. Update Config
 Modify `config/config.json` with new classes and gauge definitions.
 
+This file tells `infer_crop.py` what to look for. For example, to add Power (P) and Power Factor (PF) gauges (both model 'a') to a config that previously only handled Voltage (V) and Current (I), you would make the following changes:
+
+**Before (`aa__` config):**
 ```json
 {
-  "classes": ["0", "5", "300", "..."],
+  "classes": [
+    "0", "300", "600",
+    "I", "Gauge", "V"
+  ],
   "gauge_definitions": [
-    { "type": "전압", "model": "a", "conditions": { ... } },
-    { "type": "전류", "model": "a", "conditions": { ... } },
-    { "type": "전력", "model": "a", "conditions": { ... } },
-    { "type": "역률", "model": "a", "conditions": { ... } }
+    { "type": "전압", "model": "a", "conditions": { "unit": "V", "max_val": "600" } },
+    { "type": "전류", "model": "a", "conditions": { "unit": "I", "max_val": "300" } }
   ]
 }
-````
+After (aaaa config):
+
+JSON
+
+{
+  "classes": [
+    "0", "5", "300", 
+    "480", "600", "V", 
+    "I", "P", "PF", "Gauge"
+  ],
+  "gauge_definitions": [
+    { "type": "전압", "model": "a", "conditions": { "unit": "V", "max_val": "600" } },
+    { "type": "전류", "model": "a", "conditions": { "unit": "I", "max_val": "300" } },
+    { "type": "전력", "model": "a", "conditions": { "unit": "P", "max_val": "480" } },
+    { "type": "역률", "model": "a", "conditions": { "unit": "PF", "max_val": "5" } }
+  ]
+}
 
 ### 2\. Crop Gauges
 
