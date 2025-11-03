@@ -48,5 +48,3 @@ python make_dataset.py 1200 "전압/a" "전류/a" "전력/a" "역률/a"
   * `--plate_path`: Specify a background image (default: `plate.png`).
 
 <!-- end list -->
-
-```
