@@ -1,7 +1,0 @@
-# Train/val sets
-train: ../datasets/aa__/shuffle/train/images  # train images (relative to 'path')
-val: ../datasets/aa__/shuffle/val/images # val images (relative to 'path')
-#test: _shuffle/val/images
-# Classes
-nc: 6  # number of classes
-names: ['0', '300', '600', 'I', 'Gauge', 'V']  # class names
