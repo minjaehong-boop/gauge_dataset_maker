@@ -30,7 +30,6 @@ INPUT_NAME = INPUT_INFO.name
 INPUT_SHAPE = (INPUT_INFO.shape[2], INPUT_INFO.shape[3])
 
 def preprocess(image):
-    """Resizes and pads an image to the model's input size."""
     input_height, input_width = INPUT_SHAPE
     original_h, original_w, _ = image.shape
     scale = min(input_height / original_h, input_width / original_w)
@@ -45,7 +44,6 @@ def preprocess(image):
     return input_tensor, scale
 
 def postprocess(output, scale):
-    """Applies NMS to model output and scales boxes back to original image size."""
     predictions = np.squeeze(output).T
     
     scores = np.max(predictions[:, 4:], axis=1)
@@ -73,7 +71,6 @@ def postprocess(output, scale):
     return boxes[final_indices].astype(int).tolist(), class_ids[final_indices].tolist()
 
 def group_and_classify(boxes, class_ids):
-    """Groups objects by gauge and classifies them based on content, optimized for speed."""
     if not boxes or not GAUGE_DEFINITIONS:
         return []
 
@@ -125,7 +122,6 @@ def group_and_classify(boxes, class_ids):
     return classified_gauges
 
 def save_results(frame, gauge_info, frame_idx, video_basename):
-    """Saves a cropped gauge image and its YOLO label file."""
     output_dir = Path('datasets') / gauge_info['type'] / gauge_info['model']
     output_dir.mkdir(parents=True, exist_ok=True)
 
@@ -149,7 +145,6 @@ def save_results(frame, gauge_info, frame_idx, video_basename):
     (output_dir / f"{base_filename}.txt").write_text("\n".join(yolo_labels), encoding='utf-8')
 
 def main():
-    """Main video processing loop."""
     video_path = args.input
     if not video_path.exists():
         print(f"ERROR: Video not found at {video_path}")
