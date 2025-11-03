@@ -44,11 +44,11 @@ def create_composite_dataset(gauge_paths, num_images, plate_path, shuffle=False,
     models = [os.path.basename(path) for path in sorted_gauge_paths]
     primary_folder_name = "".join(models).ljust(4, '_')
     secondary_folder_name = "shuffle" if shuffle else "fix"
-    combo_output_dir = os.path.join(base_dir, primary_folder_name, secondary_folder_name)
-    train_img_dir = os.path.join(combo_output_dir, 'train', 'images')
-    train_lbl_dir = os.path.join(combo_output_dir, 'train', 'labels')
-    val_img_dir = os.path.join(combo_output_dir, 'val', 'images')
-    val_lbl_dir = os.path.join(combo_output_dir, 'val', 'labels')
+    output_dir = os.path.join(base_dir, primary_folder_name, secondary_folder_name)
+    train_img_dir = os.path.join(output_dir, 'train', 'images')
+    train_lbl_dir = os.path.join(output_dir, 'train', 'labels')
+    val_img_dir = os.path.join(output_dir, 'val', 'images')
+    val_lbl_dir = os.path.join(output_dir, 'val', 'labels')
     for path in [train_img_dir, train_lbl_dir, val_img_dir, val_lbl_dir]:
         os.makedirs(path, exist_ok=True)
     slot_files_map = {}
