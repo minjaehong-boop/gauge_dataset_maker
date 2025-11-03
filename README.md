@@ -50,7 +50,7 @@ This file tells `infer_crop.py` what to look for. For example, to add Power (P) 
 This generates cropped images (e.g., `datasets/전압/a/`).
 
 ```bash
-python infer_crop.py
+python infer_crop.py -i ./inputs/부하변동_영상_0903.mp4
 ```
 
 ### 3\. Generate Dataset
