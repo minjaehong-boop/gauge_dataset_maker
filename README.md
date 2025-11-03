@@ -25,9 +25,10 @@ This file tells `infer_crop.py` what to look for. For example, to add Power (P) 
     { "type": "전류", "model": "a", "conditions": { "unit": "I", "max_val": "300" } }
   ]
 }
-After (aaaa config):
+```
+**After (`aaaa` config):**
 
-JSON
+```json
 
 {
   "classes": [
@@ -42,6 +43,7 @@ JSON
     { "type": "역률", "model": "a", "conditions": { "unit": "PF", "max_val": "5" } }
   ]
 }
+```
 
 ### 2\. Crop Gauges
 
