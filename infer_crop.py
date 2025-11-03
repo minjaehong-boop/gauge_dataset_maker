@@ -6,8 +6,6 @@ import cv2
 import numpy as np
 import onnxruntime
 
-# --- Argument Parsing and Global Configuration ---
-
 parser = argparse.ArgumentParser(description="Detect, classify, and crop gauges from a video.")
 parser.add_argument("-i", "--input", type=Path, required=True, help="Path to the input video file.")
 parser.add_argument("-m", "--model", type=Path, default=Path('./model/sample.onnx'), help="Path to the ONNX model file.")
@@ -21,8 +19,6 @@ if not args.model.exists():
 
 config = json.loads(args.config.read_text(encoding='utf-8'))
 
-# --- Global Variables ---
-
 CLASSES = config['class']
 GAUGE_DEFINITIONS = config.get('standard', [])
 CONF_THRESHOLD = config.get('conf_threshold', 0.5)
@@ -32,8 +28,6 @@ ORT_SESSION = onnxruntime.InferenceSession(str(args.model))
 INPUT_INFO = ORT_SESSION.get_inputs()[0]
 INPUT_NAME = INPUT_INFO.name
 INPUT_SHAPE = (INPUT_INFO.shape[2], INPUT_INFO.shape[3])
-
-# --- Core Processing Functions ---
 
 def preprocess(image):
     """Resizes and pads an image to the model's input size."""
