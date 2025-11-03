@@ -58,7 +58,7 @@ python infer_crop.py -i ./inputs/부하변동_영상_0903.mp4
 This creates the final dataset (e.g., `datasets/aaaa/fix/`) with a 5:1 train/val split.
 
 ```bash
-python make_dataset.py 1200 "전압/a" "전류/a" "전력/a" "역률/a"
+python make_dataset.py 1200 전압/a 전류/a 전력/a 역률/a
 ```
 
   * `1200`: Total images to generate.
